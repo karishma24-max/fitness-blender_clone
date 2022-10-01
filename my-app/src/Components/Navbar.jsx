@@ -1,8 +1,21 @@
-import { Box, Flex, Icon, Image, Spacer, Text } from '@chakra-ui/react'
+import { Box, Button, Center, Flex,  Image,  Spacer, Stack, Text } from '@chakra-ui/react'
 import { AiFillCaretDown, AiOutlineMonitor, AiTwotoneUsb } from "react-icons/ai"
 
+import {
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    
+  } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { Authcontext } from '../Context/Authcontextprovider'
 export default function Navbar()
 {
+    const {name}=useContext(Authcontext)
+    console.log(name)
     return (
         <>
             <Flex>
@@ -21,11 +34,59 @@ export default function Navbar()
             <Spacer></Spacer>
             <Flex mt="20px"><Text>ABOUT</Text><Box mt={"5px"} ml={'5px'}><AiFillCaretDown className="iconstyle"/></Box></Flex>
             <Spacer></Spacer>
-            <Flex mt="20px"><Text>STORE</Text><Box mt={"5px"} ml={'5px'}><AiFillCaretDown className="iconstyle"/></Box></Flex>
+            <Flex mt="20px"><Text><Link to="/store">STORE</Link></Text><Box mt={"5px"} ml={'5px'}><AiFillCaretDown className="iconstyle"/></Box></Flex>
             <Spacer></Spacer>
             <Flex mt="20px"><Text>MEMBERSHIPS</Text><Box mt={"5px"} ml={'5px'}><AiFillCaretDown className="iconstyle"/></Box></Flex>
             <Spacer></Spacer>
-            <Flex mt="20px"><Text>Hi! Signin </Text><Box mt={"5px"} ml={'5px'}><AiFillCaretDown className="iconstyle"/></Box></Flex>
+            <Flex mt="20px">
+            
+            
+            
+            <Popover>
+  <PopoverTrigger>
+    <Box
+      tabIndex='0'
+    
+      role='button'
+      aria-label='Some box'
+      children="Hi! Signin"
+    />
+  </PopoverTrigger>
+  <Center>
+  <PopoverContent bg='black' color='white' textalign="center" height="300px">
+  
+    <PopoverHeader fontWeight='semibold' textAlign={"center"}><Link to="/membership">JOIN FOR FREE!</Link></PopoverHeader>
+    
+    
+    <PopoverBody color="white" textAlign={"center"}>
+    
+    Join for free and start building and tracking your workouts, get support from other Fitness Blender members and more!
+
+<Stack>
+<Link to="/membership"><Button bg="blue" mt="10px" width="130px">Join</Button ></Link>
+<Link to="/login"><Button bg="black" color="white" width="130px" border="1px" >Sign in</Button></Link>
+</Stack>
+
+    </PopoverBody>
+   
+  </PopoverContent>
+  </Center>
+</Popover>
+            
+            
+            
+            
+            
+            <Text fontWeight={"bold"} ml="10px">{name} </Text>
+            
+            
+            
+            
+            
+            
+            
+            
+            <Box mt={"5px"} ml={'5px'}><AiFillCaretDown className="iconstyle"/></Box></Flex>
             <Spacer/>
             <Flex mt="20px"><Box width={"50px"}><AiOutlineMonitor h={6} w={6}/></Box><AiTwotoneUsb/></Flex>
             

@@ -3,7 +3,7 @@ import { Box, Divider, Flex, Image, Popover, Text } from "@chakra-ui/react";
 export default function Header()
 {
     return (
-        < Box bg="black" height="500px" pl="80px" pr="80px">
+        < Box bg="black"  height="500px" pl="80px" pr="80px">
         <Flex>
             <Box w="40%">
             

@@ -1,5 +1,6 @@
 import { Box, Button, Center, Flex, Heading, Image, Spacer, Stack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import Header from "../Components/Header";
 
 export default function Home()
 {
@@ -130,7 +131,7 @@ FB Plus Passes
 </Flex>
 
 
-<Box  h="540px" mt="20px" ml="20px" bg="#EDFDFD">
+<Box   mt="20px" ml="20px" bg="#EDFDFD">
 
 <Center>
 <Box width="400px" mt="30px">
@@ -149,7 +150,7 @@ FB Plus Passes
     <Image mt="20px" src="https://cloudfront.fitnessblender.com/assets/img/homepage/community-2160.webp"></Image>
 </Box>
 
-
+<Header/>
 
 </>
 

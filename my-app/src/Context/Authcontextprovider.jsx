@@ -9,6 +9,7 @@ export default function Authcontextprovider({children})
         name:null,
         iserror:false
     }
+    
     const [state,dispatch]=useReducer(Reducer,initial)
 return (
     <Authcontext.Provider value={{...state,dispatch}}>

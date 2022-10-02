@@ -1,6 +1,7 @@
 import { Box, Button, Center, Checkbox, Flex, Input, Spacer, Stack, Text } from "@chakra-ui/react";
 import axios from "axios"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 export default function Signin()
 {
     const init={
@@ -35,9 +36,9 @@ export default function Signin()
 <Stack w="80%">
 <Input placeholder="First Name"  name="firstname" value={data.firstname} onChange={handlechange}></Input>
 <Input placeholder="Last Name"  name="lastname" value={data.lastname} onChange={handlechange}></Input>
-<Input placeholder="Email Address" name="email" value={data.email} onChange={handlechange}></Input>
-<Input placeholder="Password" name="password" value={data.password} onChange={handlechange}></Input>
-<Input placeholder="Confirm Password" name="confirmpassword" value={data.confirmpassword}  onChange={handlechange}></Input>
+<Input placeholder="Email Address" type="email" name="email" value={data.email} onChange={handlechange}></Input>
+<Input placeholder="Password"  type="password" name="password" value={data.password} onChange={handlechange}></Input>
+<Input placeholder="Confirm Password" type="password" name="confirmpassword" value={data.confirmpassword}  onChange={handlechange}></Input>
 </Stack>
 <Spacer/>
 <Stack ml="40px" border="1px" pl="15px" pt="15px" color="grey">
@@ -61,7 +62,7 @@ export default function Signin()
 </Stack>
 </Flex>
 <Checkbox mt="50px" ml="50px">I agree to the Fitness Blender terms of service and privacy policy</Checkbox>
-<Button bg="#4299E1" mt="100px" ml="-300px" w="200px" onClick={()=>Adddata(data)}>JOIN</Button>
+<Link to="/login"><Button bg="#4299E1" mt="100px" ml="-300px" w="200px" onClick={()=>Adddata(data)}>JOIN</Button></Link>
         </Box>
         
 </Center>

@@ -1,36 +1,66 @@
-import { Box, Button, Flex, Image, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Spacer, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { cartcontextji } from "../Context/CartContext";
 
 export default function Cart(props)
 {
     const {imageji,price,time,id}=props
-    const [cartdata,setCartdata]=useState([])
-    useEffect(()=>{
-        axios.get("https://mockapitestkiyaji.herokuapp.com/cart")
-        .then(res=>setCartdata(res.data)).catch(err=>console.log(err))
-    },[])
-
+   const {cartdata,cartfetchdata}=useContext(cartcontextji)
+   const toast = useToast()
     function addtocart(id)
     {
-        console.log(cartdata)
+        var flag =false
+        console.log(cartdata.length)
        if(cartdata.length===0) 
        {
+        
         axios.post("https://mockapitestkiyaji.herokuapp.com/cart",{...props})
+        toast({
+            title: 'Product added.',
+            description: "Product added in the cart",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+            position: "top",
+        })
+        cartfetchdata()
        }
+        else {
          
  cartdata.map((ele)=>{
        if(ele.id===id){
-alert("already in card")
-          return
+        toast({
+            title: 'No need to Add',
+            description:"Already ! You have this plan",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+            position: "top",
+        })
+        flag=true
        }
        
     })
+    
 
+
+   if(flag===false)
+   {
     axios.post("https://mockapitestkiyaji.herokuapp.com/cart",{...props})
-console.log("shalu")
-       
+    cartfetchdata()
+   toast({
+    title: 'Product added.',
+    description: "Product added in the cart",
+    status: 'success',
+    duration: 9000,
+    isClosable: true,
+    position: "top",
+})
+      } 
+    
     }
+}
     
     return (
        <>
@@ -40,10 +70,11 @@ console.log("shalu")
     
         <Text mt="20px" ml="10px" color="grey">FB PLUS PASS</Text>
         <Text mt="20px" ml="10px" fontWeight={"bold"}>{time}</Text>
-        <Flex mt="20px" ml="10px" fontWeight={"bold"} ><Text>{price}</Text><Spacer/><Button bg="#4299E1" mb="5px" mr="5px" onClick={()=>addtocart(id)}>ADD TO BAG</Button></Flex>
+        <Flex mt="20px" ml="10px" fontWeight={"bold"} ><Text>${price}</Text><Spacer/><Button bg="#4299E1" mb="5px" mr="5px" onClick={()=>addtocart(id)}>ADD TO BAG</Button></Flex>
     </Box>
 
 </Box>
+
        </> 
     )
 }

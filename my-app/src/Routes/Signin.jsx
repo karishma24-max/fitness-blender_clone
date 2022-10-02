@@ -26,7 +26,7 @@ export default function Signin()
     return (
         <>
         <Center>
-        <Box w="600px">
+        <Box w="610px">
             <Text fontSize="30px" fontWeight="bold" textAlign={"center"}>Join</Text>
             <Flex>
 <Button w="50%" mr="10px" bg="#4299E1">FACEBOOK</Button>
